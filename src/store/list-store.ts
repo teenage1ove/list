@@ -43,6 +43,21 @@ class ListStore {
 		this.page += 1
 		this.fetchList()
 	}
+
+	deleteListItem = (id: number) => {
+		runInAction(() => (this.list = this.list.filter(item => item.id !== id)))
+	}
+
+	editListItem = (id: number, name: string) => {
+		runInAction(() => {
+			this.list = this.list.map(item => {
+				if (item.id === id) {
+					return { ...item, name }
+				}
+				return item
+			})
+		})
+	}
 }
 
 export default new ListStore()
