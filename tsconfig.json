@@ -24,8 +24,10 @@
 			{
 				"name": "typescript-plugin-css-modules"
 			}
-		]
+		],
+
+		
 	},
-	"include": ["src"],
+	"include": ["src", "jest.config.mjs", "tests"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
