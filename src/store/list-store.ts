@@ -7,6 +7,8 @@ class ListStore {
 	page = 1
 	loading = false
 	hasMore = true
+	error = false
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -18,7 +20,7 @@ class ListStore {
 		this.loading = true
 		try {
 			const response = await axios.get<IGithubResponse>(
-				`https://api.github.com/search/repositories?q=javascript&sort=stars&order=asc&page=${this.page}`
+				`https://api.github.com/search/repositories?q=react&sort=stars&order=asc&page=${this.page}`
 			)
 
 			runInAction(() => {
@@ -29,8 +31,12 @@ class ListStore {
 					this.hasMore = false
 				}
 			})
-		} catch (error) {
-			console.error('Error fetching list', error)
+		} catch (e) {
+			runInAction(() => {
+				this.error = true
+				this.hasMore = false // Завершаем поиск, если произошла ошибка
+			})
+			console.error(e)
 		} finally {
 			runInAction(() => {
 				this.loading = false
