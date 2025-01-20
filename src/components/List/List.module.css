@@ -1,0 +1,20 @@
+.list {
+	margin-top: 40px;
+	padding: 20px;
+}
+
+.list__loader {
+	text-align: center;
+}
+
+.list__no-more {
+	font-size: 18px;
+	margin-top: 15px;
+	text-align: center;
+}
+
+.list__error {
+	text-align: center;
+	padding: 10px;
+	color: red;
+}
